@@ -1,0 +1,382 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | Kung Fu Simulator", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+
+getgenv().tpPlace = "string"
+
+function Teleport(teleportPlace)
+    local player = game.Players.LocalPlayer
+    player.Character.HumanoidRootPart.CFrame = teleportPlace
+end
+
+
+local TpTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Tp2Tab = Window:MakeTab({
+	Name = "Fight",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Tp3Tab = Window:MakeTab({
+	Name = "Dupe",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Tp5Tab = Window:MakeTab({
+	Name = "Egg",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Tp6Tab = Window:MakeTab({
+	Name = "Tp",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Tp4Tab = Window:MakeTab({
+	Name = "Others",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+_G.train = true
+function train() 
+     while _G.train == true do
+        local args = {
+            [1] = workspace:WaitForChild("Targets"):WaitForChild("TargetsZone4"):WaitForChild("skill"):WaitForChild("1"):WaitForChild("Cylinder")
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("WeaponSystem"):WaitForChild("Remotes"):WaitForChild("DummyHit"):FireServer(unpack(args))
+     wait(0)
+    end
+end        
+
+_G.train2 = true
+function train2() 
+     while _G.train2 == true do
+        local args = {
+            [1] = workspace:WaitForChild("Targets"):WaitForChild("TargetsZone4"):WaitForChild("skill"):WaitForChild("2"):WaitForChild("Cylinder.004")
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("WeaponSystem"):WaitForChild("Remotes"):WaitForChild("DummyHit"):FireServer(unpack(args))        
+     wait(0)
+    end
+end      
+
+_G.train3 = true
+function train3() 
+     while _G.train3 == true do
+        local args = {
+            [1] = workspace:WaitForChild("Targets"):WaitForChild("TargetsZone4"):WaitForChild("skill"):WaitForChild("3"):WaitForChild("Cylinder.008")
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("WeaponSystem"):WaitForChild("Remotes"):WaitForChild("DummyHit"):FireServer(unpack(args))        
+     wait(0)
+    end
+end      
+
+_G.train4 = true
+function train4() 
+     while _G.train4 == true do
+        local args = {
+            [1] = workspace:WaitForChild("Targets"):WaitForChild("TargetsZone4"):WaitForChild("skill"):WaitForChild("4"):WaitForChild("Cylinder.012")
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("WeaponSystem"):WaitForChild("Remotes"):WaitForChild("DummyHit"):FireServer(unpack(args))        
+     wait(0)
+    end
+end      
+
+TpTab:AddButton({
+	Name = "Tp To Bag Last World",
+	Callback = function()
+       Teleport(game:GetService("Workspace").Targets.TargetsZone4.SkillHitbox.CFrame)
+    end
+}) 
+
+TpTab:AddToggle({
+	Name = "Auto Train Skill Bag 1 Last World",
+	Default = false,
+	Callback = function(Value)
+        _G.train = Value
+        train()
+	end    
+})
+ 
+TpTab:AddToggle({
+	Name = "Auto Train Skill Bag 2 Last World",
+	Default = false,
+	Callback = function(Value)
+        _G.train2 = Value
+        train2()
+	end    
+})
+
+TpTab:AddToggle({
+	Name = "Auto Train Skill Bag 3 Last World",
+	Default = false,
+	Callback = function(Value)
+        _G.train3 = Value
+        train3()
+	end    
+})
+
+TpTab:AddToggle({
+	Name = "Auto Train Skill Bag 4 Last World",
+	Default = false,
+	Callback = function(Value)
+        _G.train4 = Value
+        train4()
+	end    
+})
+
+TpTab:AddButton({
+	Name = "Train Stamina",
+	Callback = function()
+        local args = {
+            [1] = "stamina"
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("WallSystem"):WaitForChild("Remotes"):WaitForChild("StartTrain"):FireServer(unpack(args))
+    end
+}) 
+
+TpTab:AddButton({
+	Name = "Train Wisdom",
+	Callback = function()
+        local args = {
+            [1] = "wisdom"
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("WallSystem"):WaitForChild("Remotes"):WaitForChild("StartTrain"):FireServer(unpack(args))        
+    end
+}) 
+
+_G.click = true
+_G.boss = true
+_G.sboss = "1"
+function boss() 
+     while _G.boss == true do
+        game:GetService("ReplicatedStorage"):WaitForChild("WallSystem"):WaitForChild("Remotes"):WaitForChild("StartAutoFight"):FireServer(_G.sboss, false)
+     wait(0)
+    end
+end 
+
+function click()
+     while _G.click == true do
+        game:GetService("ReplicatedStorage"):WaitForChild("WallSystem"):WaitForChild("Remotes"):WaitForChild("Attack"):FireServer()
+     wait(0)
+    end
+end
+
+Tp2Tab:AddToggle({
+	Name = "Auto Click Fight",
+	Default = false,
+	Callback = function(Value)
+        _G.click = Value
+        click()
+	end    
+})
+
+Tp2Tab:AddToggle({
+	Name = "Auto Boss Fight",
+	Default = false,
+	Callback = function(Value)
+        _G.boss = Value
+        boss()
+	end    
+})
+
+Tp2Tab:AddDropdown({
+	Name = "Select",
+	Default = "1",
+	Options = {"1", "2", "3", "4", "5"},
+	Callback = function(Value)
+	    _G.sboss = Value  
+	end    
+})
+
+Tp3Tab:AddLabel("Use Get Ingame UGC v1 For Dupe Rebirth")
+Tp3Tab:AddLabel("Use Get Ingame UGC v1 For Dupe Event Tokens And Wins")
+
+Tp3Tab:AddButton({
+	Name = "Script Dupe Wins And Event Tokens And Rebirth",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/JustAP1ayer/PlayerHubOther/main/PlayerHubIngameUgcLimiteds.lua"))()    end
+}) 
+
+_G.segg = "Egg1"
+_G.egg = true
+function egg()
+     while _G.egg == true do
+        game:GetService("ReplicatedStorage"):WaitForChild("PetSystem"):WaitForChild("Remotes"):WaitForChild("HatchPet"):FireServer(_G.segg, Egg1)
+        wait(0)
+    end
+end
+
+Tp5Tab:AddToggle({
+	Name = "Auto Hatch",
+	Default = false,
+	Callback = function(Value)
+        _G.egg = Value
+        egg()
+	end    
+})
+
+Tp5Tab:AddDropdown({
+	Name = "Select",
+	Default = "Egg1",
+	Options = {"Egg1", "Egg2", "Egg3", "Egg4", "Egg5", "Egg6", "Egg7", "Egg8", "Egg9", "Egg10", "Egg11", "Egg12", "Egg13", "Egg14", "Egg15", "Egg16"},
+	Callback = function(Value)
+	    _G.segg = Value  
+	end    
+})
+
+Tp5Tab:AddLabel("Event Egg")
+_G.segg1 = "EventEgg1"
+_G.egg1 = true
+function egg1()
+     while _G.egg1 == true do
+        game:GetService("ReplicatedStorage"):WaitForChild("PetSystem"):WaitForChild("Remotes"):WaitForChild("HatchPet"):FireServer(_G.segg1)
+        wait(0)
+    end
+end
+
+Tp5Tab:AddToggle({
+	Name = "Auto Hatch Event Egg",
+	Default = false,
+	Callback = function(Value)
+        _G.egg1 = Value
+        egg1()
+	end    
+})
+
+Tp5Tab:AddDropdown({
+	Name = "Select",
+	Default = "EventEgg1",
+	Options = {"EventEgg1", "EventEgg2", "EventEgg3", "EventEgg4"},
+	Callback = function(Value)
+	    _G.segg1 = Value  
+	end    
+})
+
+Tp6Tab:AddButton({
+	Name = "World 1",
+	Callback = function()
+       Teleport(game:GetService("Workspace").SpawnLocations.Zone1.CFrame)
+    end
+}) 
+
+Tp6Tab:AddButton({
+	Name = "World 2",
+	Callback = function()
+       Teleport(game:GetService("Workspace").SpawnLocations.Zone2.CFrame)
+    end
+}) 
+
+Tp6Tab:AddButton({
+	Name = "World 3",
+	Callback = function()
+       Teleport(game:GetService("Workspace").SpawnLocations.Zone3.CFrame)
+    end
+}) 
+
+Tp6Tab:AddButton({
+	Name = "World 4",
+	Callback = function()
+       Teleport(game:GetService("Workspace").SpawnLocations.Zone4.CFrame)
+    end
+}) 
+
+Tp4Tab:AddButton({
+    Name = "Anti AFK",
+    Callback = function()
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+            vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+            wait(1)
+            vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+        end)
+    end
+})
+
+Tp4Tab:AddButton({
+    Name = "Delete Time Hold Button E",
+    Callback = function()
+        while true do
+            for _, v in next, workspace:GetDescendants() do
+                if v:IsA("ProximityPrompt") then
+                    v.HoldDuration = 0
+                end
+            end
+            wait(1) 
+        end
+    end
+})
+
+Tp4Tab:AddButton({
+    Name = "Server Less People",
+    Callback = function()
+        local Http = game:GetService("HttpService")
+        local TPS = game:GetService("TeleportService")
+        local Api = "https://games.roblox.com/v1/games/"
+
+        local _place = game.PlaceId
+        local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+
+        local function ListServers(cursor)
+            local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+            return Http:JSONDecode(Raw)
+        end
+
+        local Server, Next
+        repeat
+            local Servers = ListServers(Next)
+            Server = Servers.data[1]
+            Next = Servers.nextPageCursor
+        until Server
+
+        TPS:TeleportToPlaceInstance(_place, Server.id, game.Players.LocalPlayer)
+    end
+})
+
+Tp4Tab:AddButton({
+    Name = "Server Hop",
+    Callback = function()
+        local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua"))()
+        module:Teleport(game.PlaceId)
+    end
+})
+
+Tp4Tab:AddSlider({
+	Name = "Change Speed Power",
+	Min = 16,
+	Max = 1000,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Speed",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end    
+})
+
+Tp4Tab:AddSlider({
+	Name = "Change Jump Power",
+	Min = 16,
+	Max = 1000,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Jump",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end    
+})
